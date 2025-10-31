@@ -1,19 +1,9 @@
 """
-Single-file Flask web app for fabric TPI (threads-per-inch) analysis.
-Drop-in replacement/enhancement of the provided Colab script so you can
-upload an image from your browser and see the results (original image,
-FFT magnitude image, and detected warp/weft counts or TPI when PPI is
-provided).
-
 How to run:
 1. Create a virtualenv and activate it.
 2. pip install flask numpy opencv-python-headless matplotlib scipy
 3. python fabric_tpi_flask_app.py
 4. Open http://127.0.0.1:5000 in your browser.
-
-Note: This is a minimal working example meant for local use or light demo
-hosting. For production, add authentication, request size limits, secure
-file handling, and asynchronous workers if large images are expected.
 """
 
 from flask import Flask, request, redirect, url_for, send_from_directory, render_template_string, flash
@@ -232,3 +222,4 @@ def upload_and_analyze():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
