@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🧵 ThreadCounty</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>🧶 ThreadCounty</h1>
+    <p class="subtitle">Upload any fabric image to analyze warp & weft thread density using AI-powered FFT.</p>
+
+    <form method="POST" enctype="multipart/form-data" class="upload-form">
+      <label for="file-upload" class="custom-file-upload">
+        <span>📁 Choose Fabric Image</span>
+      </label>
+      <input id="file-upload" type="file" name="fabric_image" accept="image/*" required />
+      <button type="submit" class="analyze-btn">🔍 Analyze Fabric</button>
+    </form>
+
+    {% if error %}
+      <p class="error">{{ error }}</p>
+    {% endif %}
+
+    {% if weft and warp %}
+      <div class="results">
+        <h2>Results</h2>
+        <div class="values">
+          <div class="value-box">
+            <h3>Weft Threads</h3>
+            <p>{{ weft | round(2) }}</p>
+          </div>
+          <div class="value-box">
+            <h3>Warp Threads</h3>
+            <p>{{ warp | round(2) }}</p>
+          </div>
+        </div>
+
+        <div class="image-section">
+          <img src="{{ url_for('static', filename=plot_image) }}" alt="Result Plot" class="result-img" />
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</body>
+</html>
